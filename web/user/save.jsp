@@ -23,10 +23,10 @@
 %>
 <%
 	int result = new userDAO().register(userDTO.getUserID(), userDTO.getUserPwd(), userDTO.getUserName(), userDTO.getUserNickName());
-	System.out.println(userDTO.getUserID());
-	System.out.println(userDTO.getUserName());
-	System.out.println(userDTO.getUserNickName());
-	System.out.println(userDTO.getUserPwd());
+//	System.out.println(userDTO.getUserID());
+//	System.out.println(userDTO.getUserName());
+//	System.out.println(userDTO.getUserNickName());
+//	System.out.println(userDTO.getUserPwd());
 	if (result == 1) {
 		request.getSession().setAttribute("messageType", "성공 메세지");
 		request.getSession().setAttribute("messageContent", "회원가입에 성공했습니다.");

@@ -66,10 +66,19 @@
 			<div class="navbar-right-col">
 				<ul class="list-inline">
 					<li class="list-inline-item">
-						<a href="/log" ><p data-toggle="tooltip" data-placement="bottom" title="로그아웃">&nbsp;<i class="fa fa-sign-out mr-1"></i></p></a>
+						<a href="#"><p data-toggle="tooltip" data-placement="bottom" title="알림">&nbsp;<i class="fa fa-bell mr-1"></i></p></a>
 					</li>
-					<li class="list-inline-item">
-						<a href="user/memberlist.jsp"><p data-toggle="tooltip" data-placement="bottom" title="회원목록">&nbsp;<i class="fa fa-user mr-1"></i></p></a>
+					<li class="list-inline-item dropdown dropdown-search">
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-cog"></i></a>
+						<div class="dropdown-menu search-dropdown-menu dropdown-menu-left">
+							<div style="background-color: white; border-radius: 5px">
+								<a class="dropdown-item" href="#" style="border-radius: 5px"><i class="fa fa-user mr-1"></i>정보수정</a>
+								<a class="dropdown-item" href="/log" style="border-radius: 5px"><i class="fa fa-sign-out mr-1"></i>로그아웃</a>
+									<c:if test="${sessionScope.userLevel eq 1}">
+										<a class="dropdown-item" href="user/memberlist.jsp" style="border-radius: 5px"><i class="fa fa-user-secret mr-1"></i>회원관리</a>
+									</c:if>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</div>

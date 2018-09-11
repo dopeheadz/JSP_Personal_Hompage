@@ -13,13 +13,12 @@
 	<link rel="stylesheet" type="text/css" href="../assets/plugins/cubeportfolio/css/cubeportfolio.min.css">
 	<link href="../assets/css/style.css" rel="stylesheet">
 	<%--제이쿼리--%>
-	<script src="../https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<script src="register.js"></script>
 </head>
 <body>
-
 <%--id쿠키체크--%>
 <%@include file="../WEB-INF/modules/ckChk.jsp" %>
 <%--id쿠키체크--%>
@@ -89,7 +88,7 @@
 						</div>
 						<div class="input-group mb-3" style="margin-bottom: 0px !important;">
 							<div class="input-group-addon" style="width: 35px; border-radius: 10px 0px 0px 10px;">
-								<i class="fa fa-lock"></i>
+								<i class="fa fa-unlock"></i>
 							</div>
 							<input type="password" id='userPwd2' name='userPwd2' class='form-control' maxlength="20"
 								   autocomplete="off" placeholder="비밀번호를 한번더 입력해주세요"

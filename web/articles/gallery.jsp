@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@include file="../WEB-INF/modules/location.jsp"%>
 <%@include file="../WEB-INF/modules/ckChk.jsp"%>
 <html>
@@ -8,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>비트캠프 자바기반 웹&앱 개발자 양성과정 프로젝트</title>
     <link href="../assets/css/plugins/plugins.css" rel="stylesheet">
-    <link href="../assets/plugins/ytplayer/jquery.mb.YTPlayer.min.css" rel="stylesheet">
     <link href="../assets/plugins/dzsparallaxer/dzsparallaxer.css" rel="stylesheet">
     <link href="../assets/plugins/dzsparallaxer/scroller.css" rel="stylesheet">
     <link href="../assets/plugins/dzsparallaxer/advancedscroller/plugin.css" rel="stylesheet">
@@ -202,6 +202,7 @@
 
 <!--/.footer-->
 <script src="../assets/js/bundle/bundle.js" type="text/javascript"></script>
+<script src="../assets/js/versa.custom.js"></script>
 <!--dz parallaxer-->
 <script type="text/javascript" src="../assets/plugins/dzsparallaxer/dzsparallaxer.js"></script>
 <script type="text/javascript" src="../assets/plugins/dzsparallaxer/scroller.js"></script>

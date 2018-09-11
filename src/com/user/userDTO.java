@@ -1,11 +1,20 @@
 package com.user;
 
 public class userDTO {
-    String userID;
-    String userName;
+	String userID;
+	String userName;
 	String userNickName;
 	String userPwd;
 	String userPwd2;
+	String userLevel;
+
+	public String getUserLevel() {
+		return userLevel;
+	}
+
+	public void setUserLevel(String userLevel) {
+		this.userLevel = userLevel;
+	}
 
 	public String getUserID() {
 		return userID;
@@ -55,6 +64,7 @@ public class userDTO {
 				", userNickName='" + userNickName + '\'' +
 				", userPwd='" + userPwd + '\'' +
 				", userPwd2='" + userPwd2 + '\'' +
+				", userLevel='" + userLevel + '\'' +
 				'}';
 	}
 }

@@ -11,6 +11,12 @@
 		rd.forward(request,response);
 	}
 %>
+<%
+	if (!session.getAttribute("userLevel").equals(1)) {
+		response.sendRedirect("../warning.html");
+		return;
+	}
+%>
 <jsp:useBean id="userDTO" scope="request" class="com.user.userDTO"></jsp:useBean>
 <jsp:useBean id="userDAO" class="com.user.userDAO"></jsp:useBean>
 <html>
@@ -27,7 +33,7 @@
 	<link rel="stylesheet" type="text/css" href="../assets/plugins/cubeportfolio/css/cubeportfolio.min.css">
 	<link href="../assets/css/style.css" rel="stylesheet">
 	<%--제이쿼리--%>
-	<script src="../https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<script src="member_modify.js"></script>
@@ -56,6 +62,7 @@
 			<th>아이디(이메일)</th>
 			<th>이름</th>
 			<th>닉네임</th>
+			<th>회원등급</th>
 			<th>비밀번호</th>
 			<th>관리</th>
 		</tr>
@@ -64,17 +71,26 @@
 		<%
 			ArrayList<userDTO> list = userDAO.getMemberAll();
 			int index = 1;
+			String passwordLength = "";
 			for (userDTO dto : list) {
 		%>
 		<tr>
+			<% for (int i=0;i<dto.getUserPwd().length();i++) passwordLength += "*";%>
 			<td> <%= index++ %> </td>
 			<td><%= dto.getUserID() %></td>
 			<td><%= dto.getUserName()%></td>
 			<td><%= dto.getUserNickName()%></td>
-			<td><%= dto.getUserPwd()%></td>
 			<td>
-				<button type="button" onclick="admin_modify_member('<%=dto.getUserID()%>')" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModal">수정</button>
-				<button type="button" class="btn btn-sm btn-outline-secondary">삭제</button>
+				<% switch (dto.getUserLevel()){
+					case "1": %>관리자<%break;
+					case "10": %>일반회원<%break;
+				}%>
+			</td>
+			<td><%= passwordLength %></td>
+			<% passwordLength=""; %>
+			<td>
+				<button type="button" onclick="admin_modify_member('<%=dto.getUserID()%>')" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#exampleModal">수정</button>
+				<button type="button" onclick="admin_delete_member('<%=dto.getUserID()%>')" class="btn btn-sm btn-outline-danger">삭제</button>
 			</td>
 		</tr>
 		<%
@@ -94,22 +110,45 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body">
-				<form class="p-4">
-					<div class="form-group">
-						<input type="email" name="userIDModal" id="userIDModal" placeholder="수정할 아이디(이메일)를 입력해주세요." class="form-control"/>
+			<div class="modal-body" style="padding-bottom: 0px;">
+				<form class="p-1" method="post" action="save.jsp">
+					<div class="input-group mb-3">
+						<div class="input-group-addon" style="width: 35px; border-radius: 10px 0px 0px 10px;">
+							<i class="fa fa-at"></i>
+						</div>
+						<input name="userIDModal" class="form-control" id="userIDModal" aria-describedby="basic-addon2" required="" type="email" maxlength="20" placeholder="수정할 아이디(이메일)를 입력해주세요." readonly autocomplete="off">
 					</div>
-					<div class="form-group">
-						<input type="text" name="userNameModal" id="userNameModal" placeholder="수정할 이름을 입력해주세요." class="form-control"/>
+					<div class="input-group mb-3">
+						<div class="input-group-addon" style="width: 35px; border-radius: 10px 0px 0px 10px;">
+							<i class="fa fa-user"></i>
+						</div>
+						<input name="userNameModal" class="form-control" id="userNameModal" aria-describedby="basic-addon2" required="" type="text" maxlength="20" placeholder="수정할 이름을 입력해주세요." readonly autocomplete="off">
 					</div>
-					<div class="form-group">
-						<input type="text" name="userNickNameModal" id="userNickNameModal" placeholder="수정할 닉네임을 입력해주세요." class="form-control"/>
+					<div class="input-group mb-3">
+						<div class="input-group-addon" style="width: 35px; border-radius: 10px 0px 0px 10px;">
+							<i class="fa fa-user-md"></i>
+						</div>
+						<input name="userNickNameModal" class="form-control" id="userNickNameModal" aria-describedby="basic-addon2" required="" type="text" maxlength="20" placeholder="수정할 닉네임을 입력해주세요." autocomplete="off">
 					</div>
-					<div class="form-group">
-						<input type="password" name="userPwdModal" id="userPwdModal" placeholder="수정할 비밀번호를 입력해주세요." class="form-control"/>
+					<div class="input-group mb-3">
+						<div class="input-group-addon" style="width: 35px; border-radius: 10px 0px 0px 10px;">
+							<i class="fa fa-lock"></i>
+						</div>
+						<input name="userPwdModal" class="form-control" id="userPwdModal" aria-describedby="basic-addon2" required="" type="password" maxlength="20" placeholder="수정할 비밀번호를 입력해주세요." autocomplete="off">
 					</div>
-					<div class="form-group">
-						<button class="btn btn-primary btn-block" type="button" onclick="onEditPressed()">수정</button>
+					<div class="input-group mb-3">
+						<div class="input-group-addon" style="width: 35px; border-radius: 10px 0px 0px 10px;">
+							<i class="fa fa-lock"></i>
+						</div>
+						<select id="userLevelModal" name="userLevelModal" class="custom-select mb-2 mr-sm-2 mb-sm-0" style="width: 100%; border-radius: 0px 10px 10px 0px; margin: 0px!important;">
+							<%--<option selected>회원등급변경</option>--%>
+							<option value="1">관리자</option>
+							<option value="10">일반회원</option>
+						</select>
+					</div>
+					<div class="modal-footer" style="padding-bottom: 0px">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary" onclick="admin_modify_submit()">수정</button>
 					</div>
 				</form>
 			</div>

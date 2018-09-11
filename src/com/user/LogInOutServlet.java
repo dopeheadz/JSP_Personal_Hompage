@@ -35,43 +35,13 @@ public class LogInOutServlet extends HttpServlet {
             location = "/index.jsp";
         }
 
-//        // 유효성 체크
-//        if(id.isEmpty()||pwd.isEmpty()){
-//            request.getSession().setAttribute("messageType", "오류 메세지");
-//            request.getSession().setAttribute("messageContent", "ID 또는 비밀번호를 입력해주세요!");
-//            response.sendRedirect(location);
-//            return;
-//        }
-//
-//        if(!id.equals("djdope")){
-//            request.getSession().setAttribute("messageType", "오류 메세지");
-//            request.getSession().setAttribute("messageContent", "아이디를 확인해주세요.");
-//            response.sendRedirect(location);
-//            return;
-//        }
-//
-//        if(!pwd.equals("1234")){
-//            request.getSession().setAttribute("messageType", "오류 메세지");
-//            request.getSession().setAttribute("messageContent", "비밀번호를 확인해주세요.");
-//            response.sendRedirect(location);
-//            return;
-//        }
-//        session.isNew();
-
-//        //로그인 처리
-//        if(session.isNew()||session.getAttribute("id") == null){
-//            session.setAttribute("id", id);
-//            out.print("로그인 작업이 완료되었습니다.");
-//        }else{
-//            out.print("이미 로그인 상태입니다.");
-//        }
-
-        // 로그인 체크
-
         userDAO userDAO = new userDAO();
         int result = userDAO.login(userID, userPwd);
         if(result == 1){
             session.setAttribute("userID", userID);
+            int userLevel = new userDAO().getUserLevel(userID);
+//	        System.out.println(userLevel);
+            session.setAttribute("userLevel", userLevel);
         } else if(result == 0){
             request.getSession().setAttribute("messageType", "오류 메세지");
             request.getSession().setAttribute("messageContent", "비밀번호를 확인해주세요.");
