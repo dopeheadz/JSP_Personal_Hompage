@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+    <!--<Resource driverClassName="com.mysql.jdbc.Driver"-->
+              <!--url="jdbc:mysql://localhost:3306/member?useSSL=false"-->
+              <!--username="dope"-->
+              <!--password="aksekfxn1"-->
+              <!--name="jdbc/mysql"-->
+              <!--type="javax.sql.DataSource"-->
+              <!--maxActive="4"-->
+              <!--maxIdle="2"-->
+              <!--maxWait="5000" />-->
+    <!--<ResourceLink global="jdbc/mysql" name="jdbc/mysql" type="javax.sql.DataSource" />-->
+</Context>
