@@ -16,10 +16,6 @@
 	<script src="register.js"></script>
 </head>
 <body>
-
-<%--id쿠키체크--%>
-<%@include file="../WEB-INF/modules/ckChk.jsp" %>
-<%--id쿠키체크--%>
 <%--메뉴--%>
 <%@include file="../WEB-INF/modules/navbar/loginNav.jsp" %>
 <%--메뉴--%>

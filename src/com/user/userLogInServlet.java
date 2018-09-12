@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-@WebServlet(name = "LogInOutServlet", urlPatterns = "/log")
-public class LogInOutServlet extends HttpServlet {
+@WebServlet(name = "userLogInServlet", urlPatterns = "/login")
+public class userLogInServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
@@ -82,28 +82,6 @@ public class LogInOutServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession(false);
 
-        if(session != null && session.getAttribute("userID") != null){
-            session.invalidate();
-            out.print("로그아웃 작업이 완료되었습니다.");
-        }
-        Cookie[] ck = request.getCookies();
-        String location = "";
-        if(ck != null) {
-            for(int i = 0; i < ck.length; ++i) {
-                String name = ck[i].getName();
-                if(name.equals("location")) {
-                    location = ck[i].getValue();
-                    break;
-                }
-            }
-        }else{
-            location = "index.jsp";
-        }
-
-        response.sendRedirect(location);
     }
 }

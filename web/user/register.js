@@ -18,7 +18,6 @@ function registerCheckFunction() {
         $('#checkMessage').html('<p class="text-danger" style="margin: 0px !important; height: 0px"><i class="fa fa-exclamation-triangle"></i>이메일주소를 입력해주세요.<p>');
         return false;
     }
-
     if (!regEmail.test(userID)) {
         $('#userID').focus();
         $('#checkMessage').html('<p class="text-danger" style="margin: 0px !important; height: 0px"><i class="fa fa-exclamation-triangle"></i>이메일주소가 유효하지않습니다.<p>');
@@ -26,7 +25,7 @@ function registerCheckFunction() {
     }
     $.ajax({
         type: 'POST',
-        url: '/UserRegisterCheckServlet',
+        url: '/userRegisterCheck',
         data: {userID: userID},
         success: function (result) {
             if (result == 1) {

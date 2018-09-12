@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@include file="WEB-INF/modules/location.jsp"%>
-<%@include file="WEB-INF/modules/ckChk.jsp"%>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -15,8 +14,8 @@
 	<link href="assets/plugins/dzsparallaxer/advancedscroller/plugin.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="assets/plugins/cubeportfolio/css/cubeportfolio.min.css">
 	<link href="assets/css/style.css" rel="stylesheet">
-	<script src="assets/https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	<script src="assets/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light navbar-transparent navbar-sticky" style="padding: 0.0rem 1rem;">
@@ -29,11 +28,11 @@
 						<div class="dropdown-menu dropdown-form dropdown-menu-right">
 							<div class="card card-account">
 								<div class="card-body">
-									<form action="/log" method="post">
+									<form action="/login" method="post">
 										<div class="form-group mb10">
 											<label for="username">아이디</label>
 											<input id="username" name="id" type="text" class="form-control" placeholder="아이디"
-												   value="<%=id %>">
+												   value="${cookie.uid.value}">
 										</div>
 										<div class="form-group mb10">
 											<label for="password">비밀번호</label>
@@ -42,7 +41,7 @@
 										</div>
 										<div class="form-group mb10">
 											<label class="checkbox">
-												<input type="checkbox" value="on" id="rememberMe" name="ck_id" <%=chk %>> 아이디저장
+												<input type="checkbox" value="on" id="rememberMe" name="ck_id" ${cookie.chk.value}> 아이디저장
 											</label>
 										</div>
 										<button type="submit" class="btn btn-block btn-secondary btn-rounded">로그인</button>
@@ -70,10 +69,10 @@
 					</li>
 					<li class="list-inline-item dropdown dropdown-search">
 						<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-cog"></i></a>
-						<div class="dropdown-menu search-dropdown-menu dropdown-menu-left">
-							<div style="background-color: white; border-radius: 5px">
+						<div class="dropdown-menu search-dropdown-menu dropdown-menu-left" style="left: -88px;min-width: 120px;">
+							<div style="background-color: white; border-radius: 5px; width:120px;text-align: center;">
 								<a class="dropdown-item" href="#" style="border-radius: 5px"><i class="fa fa-user mr-1"></i>정보수정</a>
-								<a class="dropdown-item" href="/log" style="border-radius: 5px"><i class="fa fa-sign-out mr-1"></i>로그아웃</a>
+								<a class="dropdown-item" href="/logout" style="border-radius: 5px"><i class="fa fa-sign-out mr-1"></i>로그아웃</a>
 									<c:if test="${sessionScope.userLevel eq 1}">
 										<a class="dropdown-item" href="user/memberlist.jsp" style="border-radius: 5px"><i class="fa fa-user-secret mr-1"></i>회원관리</a>
 									</c:if>

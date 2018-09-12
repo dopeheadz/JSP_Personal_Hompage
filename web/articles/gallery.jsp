@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@include file="../WEB-INF/modules/location.jsp"%>
-<%@include file="../WEB-INF/modules/ckChk.jsp"%>
+<c:if test="${empty sessionScope.userID}">
+	<c:redirect url = "../login/login.jsp" />
+</c:if>
 <html>
 <head>
     <meta charset="utf-8">
@@ -18,13 +20,6 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
 <body>
-<%
-    if (session.isNew() || session.getAttribute("userID") == null) {
-        RequestDispatcher rd = request.getRequestDispatcher("../login/login.jsp");
-        rd.forward(request,response);
-    }
-%>
-<%--로그인이 아닐경우--%>
 <%@include file="../WEB-INF/modules/navbar/commNav.jsp"%>
 <!--page title-->
 <div class="cta-bg-slider bg-primary auto-init height-is-based-on-content" data-options='{   direction: "reverse"}'>

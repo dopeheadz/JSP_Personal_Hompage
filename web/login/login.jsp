@@ -23,7 +23,6 @@
 </head>
 <body>
 <%--id쿠키체크--%>
-<%@include file="../WEB-INF/modules/ckChk.jsp"%>
 <%--id쿠키체크--%>
 <%--메뉴--%>
 <%@include file="../WEB-INF/modules/navbar/loginNav.jsp"%>
@@ -45,10 +44,10 @@
         <div class='col-md-6 col-lg-5 mr-auto ml-auto'>
             <div class='card card-account'>
                 <div class='card-body'>
-                    <form action="/log" method="post">
+                    <form action="/login" method="post">
                         <div class='form-group'>
                             <label for='username'>아이디</label>
-                            <input name="id" id='username' type='text' class='form-control' placeholder='아이디를 입략해주세요.' value="<%=id %>">
+                            <input name="id" id='username' type='text' class='form-control' placeholder='아이디를 입략해주세요.' value="${cookie.uid.value}">
                         </div>
                         <div class='form-group'>
                             <label for='password'>이메일</label>
@@ -56,7 +55,7 @@
                         </div>
                         <div class='form-group'>
                             <label class="checkbox">
-                                <input type="checkbox" value="on" id="rememberMe" name="ck_id" <%=chk %>> 아이디저장
+                                <input type="checkbox" value="on" id="rememberMe" name="ck_id" ${cookie.chk.value}> 아이디저장
                             </label>
                         </div>
                         <button class='btn btn-block btn-secondary btn-rounded' type="submit">로그인</button>

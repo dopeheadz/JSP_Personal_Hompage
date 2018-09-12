@@ -19,9 +19,6 @@
 	<script src="register.js"></script>
 </head>
 <body>
-<%--id쿠키체크--%>
-<%@include file="../WEB-INF/modules/ckChk.jsp" %>
-<%--id쿠키체크--%>
 <%--메뉴--%>
 <%@include file="../WEB-INF/modules/navbar/loginNav.jsp" %>
 <%--메뉴--%>
@@ -43,8 +40,8 @@
 			<div class='card card-account'>
 				<div class='card-body'>
 					<form method="post" action="save.jsp">
-						<div class="input-group mb-3" style="margin-bottom: 0px !important;">
-							<div class="input-group-addon" style="width: 35px;border-radius: 10px 0px 0px 10px;">
+						<div class="input-group mb-3" style="margin-bottom: 0 !important;">
+							<div class="input-group-addon" style="width: 35px;border-radius: 10px 0 0 10px;">
 								<i class="fa fa-at"></i>
 							</div>
 							<input type="email" id='userID' name='userID' class='form-control' maxlength="20"
@@ -52,7 +49,7 @@
 								   aria-describedby="basic-addon2" onkeyup="fnKeyUp('userID');" required>
 							<div class="input-group-append">
 								<button class="btn btn-lg btn-outline-primary" onclick="registerCheckFunction();"
-										type="button" style="border-radius: 0px 10px 10px 0px;">중복체크
+										type="button" style="border-radius: 0 10px 10px 0;">중복체크
 								</button>
 							</div>
 						</div>
@@ -61,7 +58,7 @@
 								   style="font-weight: bold; text-align: center; padding: 0; margin: 0"></label>
 						</div>
 						<div class="input-group mb-3" style="margin-top: 15px">
-							<div class="input-group-addon" style="width: 35px; border-radius: 10px 0px 0px 10px;">
+							<div class="input-group-addon" style="width: 35px; border-radius: 10px 0 0 10px;">
 								<i class="fa fa-user"></i>
 							</div>
 							<input type="text" id='userName' name='userName' class='form-control' maxlength="20"
@@ -70,7 +67,7 @@
 						</div>
 
 						<div class="input-group mb-3">
-							<div class="input-group-addon" style="width: 35px; border-radius: 10px 0px 0px 10px;">
+							<div class="input-group-addon" style="width: 35px; border-radius: 10px 0 0 10px;">
 								<i class="fa fa-user-md"></i>
 							</div>
 							<input type="text" id='userNickName' name='userNickName' class='form-control' maxlength="20"
@@ -79,7 +76,7 @@
 						</div>
 
 						<div class="input-group mb-3">
-							<div class="input-group-addon" style="width: 35px; border-radius: 10px 0px 0px 10px;">
+							<div class="input-group-addon" style="width: 35px; border-radius: 10px 0 0 10px;">
 								<i class="fa fa-lock"></i>
 							</div>
 							<input type="password" id='userPwd' name='userPwd' class='form-control' maxlength="20"
@@ -87,7 +84,7 @@
 								   aria-describedby="basic-addon2" required>
 						</div>
 						<div class="input-group mb-3" style="margin-bottom: 0px !important;">
-							<div class="input-group-addon" style="width: 35px; border-radius: 10px 0px 0px 10px;">
+							<div class="input-group-addon" style="width: 35px; border-radius: 10px 0 0 10px;">
 								<i class="fa fa-unlock"></i>
 							</div>
 							<input type="password" id='userPwd2' name='userPwd2' class='form-control' maxlength="20"

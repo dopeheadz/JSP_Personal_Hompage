@@ -1,0 +1,15 @@
+@media all and (max-width:767px){
+    #memberlist td {display:block}
+    #memberlist thead tr {position:absolute;left:-9999px;top:-9999px}
+    #memberlist tr:after {content:"";display:block;clear:both}
+    #memberlist td {position:relative;float:left;width:100%;padding-left:50%;box-sizing:border-box}
+    #memberlist td:before {position:absolute;left:10px;top:10px;font-weight:bold}
+    #memberlist .userNo:before {content:"회원번호"}
+    #memberlist .userNo {border-top:2px solid #aaa}
+    #memberlist .userID:before {content:"아이디(이메일)"}
+    #memberlist .userName:before {content:"이름"}
+    #memberlist .userNickName:before {content:"닉네임"}
+    #memberlist .userLevel:before {content:"회원등급"}
+    #memberlist .userPwd:before {content:"비밀번호"}
+    #memberlist .userModify:before {content:"관리"}
+}

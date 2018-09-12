@@ -10,11 +10,11 @@
 						<div class="dropdown-menu dropdown-form dropdown-menu-right" style="margin: 18px 0px;">
 							<div class="card card-account">
 								<div class="card-body">
-									<form action="/log" method="post">
+									<form action="/login" method="post">
 										<div class="form-group mb10">
 											<label for="username">아이디</label>
 											<input id="username" name="id" type="text" class="form-control" placeholder="아이디"
-												   value="<%=id %>">
+												   value="${cookie.uid.value}">
 										</div>
 										<div class="form-group mb10">
 											<label for="password">비밀번호</label>
@@ -23,7 +23,7 @@
 										</div>
 										<div class="form-group mb10">
 											<label class="checkbox">
-												<input type="checkbox" value="on" id="rememberMe" name="ck_id" <%=chk %>> 아이디저장
+												<input type="checkbox" value="on" id="rememberMe" name="ck_id" ${cookie.chk.value}> 아이디저장
 											</label>
 										</div>
 										<button type="submit" class="btn btn-block btn-secondary btn-rounded">로그인</button>
@@ -50,11 +50,11 @@
 						<a href="#"><p data-toggle="tooltip" data-placement="bottom" title="알림">&nbsp;<i class="fa fa-bell mr-1"></i></p></a>
 					</li>
 					<li class="list-inline-item dropdown dropdown-search">
-						<a href="#" data-toggle="dropdown" class="dropdown-toggle"><p style="margin-left: -3">&nbsp;<i class="fa fa-cog"></i></p></a>
-						<div class="dropdown-menu search-dropdown-menu dropdown-menu-left">
-							<div style="background-color: white; border-radius: 5px">
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle"><p style="margin-left: -3px">&nbsp;<i class="fa fa-cog"></i></p></a>
+						<div class="dropdown-menu search-dropdown-menu dropdown-menu-left" style="left: -88px;min-width: 120px;">
+							<div style="background-color: white; border-radius: 5px; width:120px;text-align: center;">
 								<a class="dropdown-item" href="#" style="border-radius: 5px"><i class="fa fa-user mr-1"></i>정보수정</a>
-								<a class="dropdown-item" href="/log" style="border-radius: 5px"><i class="fa fa-sign-out mr-1"></i>로그아웃</a>
+								<a class="dropdown-item" href="/logout" style="border-radius: 5px"><i class="fa fa-sign-out mr-1"></i>로그아웃</a>
 								<c:if test="${sessionScope.userLevel eq 1}">
 									<a class="dropdown-item" href="../user/memberlist.jsp" style="border-radius: 5px"><i class="fa fa-user-secret mr-1"></i>회원관리</a>
 								</c:if>

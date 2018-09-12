@@ -1,15 +1,18 @@
 package com.user;
 
 import javax.crypto.Cipher;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import java.security.Key;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-
 public class userDAO {
+	DataSource dataSource;
+
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
@@ -20,19 +23,16 @@ public class userDAO {
 
 	public userDAO() {
 		try {
-			String dbURL = "jdbc:mysql://13.209.103.1:3306/member?useSSL=false";
-			String dbID = "dope";
-			String dbPassword = "aksekfxn1";
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+			InitialContext initialContext = new InitialContext();
+			Context envContext = (Context)initialContext.lookup("java:comp/env");
+			dataSource = (DataSource)envContext.lookup("jdbc/user");
+			conn = dataSource.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public int login(String userID, String userPwd) {
-		pstmt = null;
-		rs = null;
 		String SQL = "SELECT * FROM USER WHERE userID = ?";
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -48,14 +48,20 @@ public class userDAO {
 			return -1; // 아이디가 없음
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return -2; // 데이터베이스 오류
 	}
 
 	public int getUserLevel(String userID) {
 		int userLevel = 0;
-    	pstmt = null;
-    	rs = null;
     	String SQL = "SELECT * FROM user WHERE userID = ?";
     	try{
     		pstmt = conn.prepareStatement(SQL);
@@ -71,6 +77,7 @@ public class userDAO {
 		    try {
 			    if (rs != null) rs.close();
 			    if (pstmt != null) pstmt.close();
+			    if (conn != null) conn.close();
 		    } catch (Exception e) {
 			    e.printStackTrace();
 		    }
@@ -79,8 +86,6 @@ public class userDAO {
 	}
 
 	public userDTO userInfo(String userID) {
-		pstmt = null;
-		rs = null;
 		userDTO dto = new userDTO();
 		String SQL2 = "SELECT * FROM user WHERE userID = ?";
 		try {
@@ -108,6 +113,7 @@ public class userDAO {
 			try {
 				if (rs != null) rs.close();
 				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -116,8 +122,6 @@ public class userDAO {
 	}
 
 	public int userInfoDelete(String userID) {
-		pstmt = null;
-		rs = null;
 		String SQL = "delete from user where userID = ?";
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -129,6 +133,7 @@ public class userDAO {
 			try {
 				if (rs != null) rs.close();
 				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -137,12 +142,7 @@ public class userDAO {
 	}
 
 	public int userInfoModify(String userID, String userNickName, String userPwd, String userLevel) {
-		pstmt = null;
-		rs = null;
 		String SQL = "update user set userNickName=?,userPwd=?,userLevel=? where userID=?";
-//		System.out.println(userLevel);
-//		System.out.println(userNickName);
-//		System.out.println(userPwd);
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userNickName);
@@ -156,6 +156,7 @@ public class userDAO {
 			try {
 				if (rs != null) rs.close();
 				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -164,8 +165,6 @@ public class userDAO {
 	}
 
 	public int registerCheck(String userID) {
-		pstmt = null;
-		rs = null;
 		String SQL = "SELECT * FROM user WHERE userID = ?";
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -182,6 +181,7 @@ public class userDAO {
 			try {
 				if (rs != null) rs.close();
 				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -190,9 +190,7 @@ public class userDAO {
 	}
 
 	public int register(String userID, String userPwd, String userName, String userNickName) {
-		pstmt = null;
-		rs = null;
-		String SQL = "INSERT INTO user VALUES (?, ?, ?, ?)";
+		String SQL = "INSERT INTO user VALUES (?, ?, ?, ?, default , default )";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userID);
@@ -206,6 +204,7 @@ public class userDAO {
 			try {
 				if (rs != null) rs.close();
 				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

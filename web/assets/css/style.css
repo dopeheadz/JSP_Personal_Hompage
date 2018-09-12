@@ -647,7 +647,7 @@ Header styles
   left: auto;
   background-color: transparent;
   top: 100%;
-  margin-top: 20px; }
+  margin-top: 5px; }
   .search-dropdown-menu.dropdown-menu > form {
     position: relative; }
     .search-dropdown-menu.dropdown-menu > form .btn-nav-search {
@@ -803,7 +803,7 @@ Dropdown-style
   border-radius: 6px 0 6px 6px; }
 
 .dropdown-menu {
-  min-width: 12rem;
+  min-width: 10rem;
   background: #fff; }
   .dropdown-menu .dropdown-item {
     font-size: .85rem;
@@ -3306,7 +3306,7 @@ versa responsive****/
     .navbar-single-page.navbar .navbar-toggler {
       right: 1rem; }
   .search-dropdown-menu.dropdown-menu {
-    margin-top: 10px;
+    margin-top: 20px;
     border: 0px; }
   .typed {
     font-size: 1rem;

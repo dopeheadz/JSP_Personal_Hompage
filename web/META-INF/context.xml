@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/">
-    <!--<Resource driverClassName="com.mysql.jdbc.Driver"-->
-              <!--url="jdbc:mysql://localhost:3306/member?useSSL=false"-->
-              <!--username="dope"-->
-              <!--password="aksekfxn1"-->
-              <!--name="jdbc/mysql"-->
-              <!--type="javax.sql.DataSource"-->
-              <!--maxActive="4"-->
-              <!--maxIdle="2"-->
-              <!--maxWait="5000" />-->
-    <!--<ResourceLink global="jdbc/mysql" name="jdbc/mysql" type="javax.sql.DataSource" />-->
+<Context path="/" docBase="wwww">
+<Resource
+    name="jdbc/user"
+    auth="Container"
+    type="javax.sql.DataSource"
+    driverClassName="com.mysql.jdbc.Driver"
+    loginTimeout="10"
+    validationQuery="SELECT 1 FROM DUAL"
+    maxWait="5000"
+    username="dope"
+    password="aksekfxn1"
+    testOnBorrow="true"
+    url="jdbc:mysql://13.209.103.1:3306/member?useSSL=false"/>
+<ResourceLink type="javax.sql.data.DataSource" name="jdbc/user" global="jdbc/user" />
 </Context>

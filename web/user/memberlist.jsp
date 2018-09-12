@@ -4,19 +4,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@include file="../WEB-INF/modules/location.jsp"%>
-<%@include file="../WEB-INF/modules/ckChk.jsp"%>
-<%
-	if (session.isNew() || session.getAttribute("userID") == null) {
-		RequestDispatcher rd = request.getRequestDispatcher("../login/login.jsp");
-		rd.forward(request,response);
-	}
-%>
-<%
-	if (!session.getAttribute("userLevel").equals(1)) {
-		response.sendRedirect("../warning.html");
-		return;
-	}
-%>
+<c:if test="${empty sessionScope.userID}">
+	<c:redirect url = "../login/login.jsp" />
+</c:if>
+<c:if test="${sessionScope.userLevel ne 1}">
+	<c:redirect url = "../warning.html"/>
+</c:if>
 <jsp:useBean id="userDTO" scope="request" class="com.user.userDTO"></jsp:useBean>
 <jsp:useBean id="userDAO" class="com.user.userDAO"></jsp:useBean>
 <html>
@@ -37,6 +30,7 @@
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<script src="member_modify.js"></script>
+	<link rel="stylesheet" type="text/css" href="memberlist.css">
 </head>
 <body>
 <%--메뉴--%>
@@ -47,7 +41,7 @@
 	<div class="container pt100 pb100">
 		<div class="row">
 			<div class="col-md-8 ml-auto mr-auto wow bounceIn" data-wow-delay=".2s">
-				<h3 class="h3 mb30 text-center font300 text-white">회원목록</h3>
+				<h3 class="h3 mb30 text-center font300 text-white">회원관리</h3>
 			</div>
 		</div>
 	</div>
@@ -55,7 +49,7 @@
 <!--parallax-->
 <!--/.page-title-->
 <div class="container pt90 pb60">
-	<table class="table">
+	<table id="memberlist" class="table">
 		<thead>
 		<tr>
 			<th>#</th>
@@ -76,19 +70,19 @@
 		%>
 		<tr>
 			<% for (int i=0;i<dto.getUserPwd().length();i++) passwordLength += "*";%>
-			<td> <%= index++ %> </td>
-			<td><%= dto.getUserID() %></td>
-			<td><%= dto.getUserName()%></td>
-			<td><%= dto.getUserNickName()%></td>
-			<td>
+			<td class="userNo"> <%= index++ %> </td>
+			<td class="userID"><%= dto.getUserID() %></td>
+			<td class="userName"><%= dto.getUserName()%></td>
+			<td class="userNickName"><%= dto.getUserNickName()%></td>
+			<td class="userLevel">
 				<% switch (dto.getUserLevel()){
 					case "1": %>관리자<%break;
 					case "10": %>일반회원<%break;
 				}%>
 			</td>
-			<td><%= passwordLength %></td>
+			<td class="userPwd"><%= passwordLength %></td>
 			<% passwordLength=""; %>
-			<td>
+			<td class="userModify">
 				<button type="button" onclick="admin_modify_member('<%=dto.getUserID()%>')" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#exampleModal">수정</button>
 				<button type="button" onclick="admin_delete_member('<%=dto.getUserID()%>')" class="btn btn-sm btn-outline-danger">삭제</button>
 			</td>
