@@ -22,7 +22,7 @@ public class userDAO {
 		try {
 			String dbURL = "jdbc:mysql://13.209.103.1:3306/member?useSSL=false";
 			String dbID = "dope";
-			String dbPassword = "aksekfxn1";
+			String dbPassword = "password";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		} catch (Exception e) {
