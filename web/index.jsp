@@ -106,7 +106,7 @@
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">커뮤니티 </a>
 
 				<ul class="dropdown-menu">
-					<li><a href="#" class="dropdown-item"><i class="fa fa-comments-o mr-2 text-muted"></i> 게시판</a>
+					<li><a href="articles/board.jsp" class="dropdown-item"><i class="fa fa-comments-o mr-2 text-muted"></i> 게시판</a>
 					</li>
 					<li><a href="articles/gallery.jsp" class="dropdown-item"><i class="fa fa-image mr-2 text-muted"></i> 갤러리</a>
 					</li>

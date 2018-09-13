@@ -19,18 +19,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>비트캠프 자바기반 웹&앱 개발자 양성과정 프로젝트</title>
 	<link href="../assets/css/plugins/plugins.css" rel="stylesheet">
-	<link href="../assets/plugins/ytplayer/jquery.mb.YTPlayer.min.css" rel="stylesheet">
 	<link href="../assets/plugins/dzsparallaxer/dzsparallaxer.css" rel="stylesheet">
 	<link href="../assets/plugins/dzsparallaxer/scroller.css" rel="stylesheet">
 	<link href="../assets/plugins/dzsparallaxer/advancedscroller/plugin.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../assets/plugins/cubeportfolio/css/cubeportfolio.min.css">
+	<link href="../assets/plugins/data-tables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<link href="../assets/plugins/data-tables/fixedHeader.bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/plugins/data-tables/responsive.bootstrap4.min.css" rel="stylesheet">
 	<link href="../assets/css/style.css" rel="stylesheet">
 	<%--제이쿼리--%>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<script src="member_modify.js"></script>
-	<link rel="stylesheet" type="text/css" href="memberlist.css">
+	<style>
+		#data-table th, #data-table td{
+			white-space: nowrap;
+		}
+	</style>
 </head>
 <body>
 <%--메뉴--%>
@@ -48,17 +51,17 @@
 </div>
 <!--parallax-->
 <!--/.page-title-->
-<div class="container pt90 pb60">
-	<table id="memberlist" class="table">
+<div class="container pt20 pb20">
+	<table id="data-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 		<thead>
 		<tr>
-			<th>#</th>
+			<th style="max-width: 3%">#</th>
 			<th>아이디(이메일)</th>
 			<th>이름</th>
 			<th>닉네임</th>
 			<th>회원등급</th>
 			<th>비밀번호</th>
-			<th>관리</th>
+			<th style="max-width: 10%">회원관리</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -70,21 +73,18 @@
 		%>
 		<tr>
 			<% for (int i=0;i<dto.getUserPwd().length();i++) passwordLength += "*";%>
-			<td class="userNo"> <%= index++ %> </td>
-			<td class="userID"><%= dto.getUserID() %></td>
-			<td class="userName"><%= dto.getUserName()%></td>
-			<td class="userNickName"><%= dto.getUserNickName()%></td>
-			<td class="userLevel">
-				<% switch (dto.getUserLevel()){
-					case "1": %>관리자<%break;
-					case "10": %>일반회원<%break;
-				}%>
+			<td><%= index++ %></td>
+			<td><%= dto.getUserID() %></td>
+			<td><%= dto.getUserName()%></td>
+			<td><%= dto.getUserNickName()%></td>
+			<td><% switch (dto.getUserLevel()){
+				case "1": %>관리자<%break;
+				case "10": %>일반회원<%break; }%>
 			</td>
-			<td class="userPwd"><%= passwordLength %></td>
+			<td><%= passwordLength %></td>
 			<% passwordLength=""; %>
-			<td class="userModify">
-				<button type="button" onclick="admin_modify_member('<%=dto.getUserID()%>')" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#exampleModal">수정</button>
-				<button type="button" onclick="admin_delete_member('<%=dto.getUserID()%>')" class="btn btn-sm btn-outline-danger">삭제</button>
+			<td><button type="button" onclick="admin_modify_member('<%=dto.getUserID()%>')" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#exampleModal">회원수정</button>
+				<button type="button" onclick="admin_delete_member('<%=dto.getUserID()%>')" class="btn btn-sm btn-outline-danger">회원삭제</button>
 			</td>
 		</tr>
 		<%
@@ -93,7 +93,6 @@
 		</tbody>
 	</table>
 </div>
-<%--내용--%>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -147,8 +146,8 @@
 				</form>
 			</div>
 			<%--<div class="modal-footer">--%>
-				<%--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
-				<%--<button type="button" class="btn btn-primary">Save changes</button>--%>
+			<%--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
+			<%--<button type="button" class="btn btn-primary">Save changes</button>--%>
 			<%--</div>--%>
 		</div>
 	</div>
@@ -167,6 +166,12 @@
 <script type="text/javascript" src="../assets/plugins/dzsparallaxer/dzsparallaxer.js"></script>
 <script type="text/javascript" src="../assets/plugins/dzsparallaxer/scroller.js"></script>
 <script type="text/javascript" src="../assets/plugins/dzsparallaxer/advancedscroller/plugin.js"></script>
+<script type="text/javascript" src="../assets/plugins/data-tables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/data-tables/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/data-tables/dataTables.fixedHeader.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/data-tables/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/data-tables/responsive.bootstrap4.min.js"></script>
+<script type="text/javascript" src="../assets/js/data-table.init.js"></script>
 <script src="../assets/js/versa.custom.js"></script>
 </body>
 </html>

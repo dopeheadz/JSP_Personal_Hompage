@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700,800");
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&subset=korean');
 @font-face {
   font-family: 'FontAwesome';
   src: url("../plugins/font-awesome/fonts/fontawesome-webfont3e6e.eot?v=4.7.0");
@@ -21,7 +23,7 @@ html, body {
   height: 100%; }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nanum Gothic", sans-serif;
   color: #86939e;
   font-size: 15px;
   line-height: 1.6;

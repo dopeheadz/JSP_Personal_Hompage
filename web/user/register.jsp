@@ -119,6 +119,11 @@
 <script type="text/javascript" src="../assets/plugins/dzsparallaxer/dzsparallaxer.js"></script>
 <script type="text/javascript" src="../assets/plugins/dzsparallaxer/scroller.js"></script>
 <script type="text/javascript" src="../assets/plugins/dzsparallaxer/advancedscroller/plugin.js"></script>
-<script src="../assets/js/versa.custom.js"></script>
+<script type="text/javascript" src="plugins/data-tables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="plugins/data-tables/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="plugins/data-tables/dataTables.fixedHeader.min.js"></script>
+<script type="text/javascript" src="plugins/data-tables/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="plugins/data-tables/responsive.bootstrap4.min.js"></script>
+<script type="text/javascript" src="js/data-table.init.js"></script>
 </body>
 </html>

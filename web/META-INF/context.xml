@@ -5,6 +5,7 @@
     auth="Container"
     type="javax.sql.DataSource"
     driverClassName="com.mysql.jdbc.Driver"
+    factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
     loginTimeout="10"
     validationQuery="SELECT 1 FROM DUAL"
     maxWait="5000"

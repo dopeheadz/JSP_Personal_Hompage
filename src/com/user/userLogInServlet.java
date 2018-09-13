@@ -39,9 +39,10 @@ public class userLogInServlet extends HttpServlet {
         int result = userDAO.login(userID, userPwd);
         if(result == 1){
             session.setAttribute("userID", userID);
-            int userLevel = new userDAO().getUserLevel(userID);
+            String[] userInfo = new userDAO().getUserInfo(userID);
 //	        System.out.println(userLevel);
-            session.setAttribute("userLevel", userLevel);
+            session.setAttribute("userNickName", userInfo[0]);
+            session.setAttribute("userLevel", userInfo[1]);
         } else if(result == 0){
             request.getSession().setAttribute("messageType", "오류 메세지");
             request.getSession().setAttribute("messageContent", "비밀번호를 확인해주세요.");

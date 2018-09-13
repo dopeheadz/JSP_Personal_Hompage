@@ -202,7 +202,6 @@
 <script type="text/javascript" src="../assets/plugins/dzsparallaxer/dzsparallaxer.js"></script>
 <script type="text/javascript" src="../assets/plugins/dzsparallaxer/scroller.js"></script>
 <script type="text/javascript" src="../assets/plugins/dzsparallaxer/advancedscroller/plugin.js"></script>
-<script src="../assets/js/versa.custom.js"></script>
 <!--page script-->
 <!-- load cubeportfolio -->
 <script type="text/javascript" src="../assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>

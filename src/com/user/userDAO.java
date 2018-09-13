@@ -60,16 +60,17 @@ public class userDAO {
 		return -2; // 데이터베이스 오류
 	}
 
-	public int getUserLevel(String userID) {
-		int userLevel = 0;
+	public String[] getUserInfo(String userID) {
+		String[] userInfo = new String[2];
     	String SQL = "SELECT * FROM user WHERE userID = ?";
     	try{
     		pstmt = conn.prepareStatement(SQL);
     		pstmt.setString(1, userID);
     		rs = pstmt.executeQuery();
     		if(rs.next()){
-    			userLevel = Integer.parseInt(rs.getString("userLevel"));
-    			return userLevel;
+    			userInfo[0] = rs.getString("userNickName");
+    			userInfo[1] = rs.getString("userLevel");
+    			return userInfo;
 		    }
 	    } catch (Exception e){
     		e.printStackTrace();
@@ -82,7 +83,7 @@ public class userDAO {
 			    e.printStackTrace();
 		    }
 	    }
-		return userLevel;
+		return userInfo;
 	}
 
 	public userDTO userInfo(String userID) {

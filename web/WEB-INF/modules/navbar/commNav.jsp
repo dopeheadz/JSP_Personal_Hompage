@@ -50,7 +50,7 @@
 						<a href="#"><p data-toggle="tooltip" data-placement="bottom" title="알림">&nbsp;<i class="fa fa-bell mr-1"></i></p></a>
 					</li>
 					<li class="list-inline-item dropdown dropdown-search">
-						<a href="#" data-toggle="dropdown" class="dropdown-toggle"><p style="margin-left: -3px">&nbsp;<i class="fa fa-cog"></i></p></a>
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle"><p style="margin-left: -4px">&nbsp;<i class="fa fa-cog"></i></p></a>
 						<div class="dropdown-menu search-dropdown-menu dropdown-menu-left" style="left: -88px;min-width: 120px;">
 							<div style="background-color: white; border-radius: 5px; width:120px;text-align: center;">
 								<a class="dropdown-item" href="#" style="border-radius: 5px"><i class="fa fa-user mr-1"></i>정보수정</a>
@@ -88,7 +88,7 @@
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/">커뮤니티 </a>
 
 				<ul class="dropdown-menu">
-					<li><a href="#" class="dropdown-item"><i class="fa fa-comments-o mr-2 text-muted"></i> 게시판</a>
+					<li><a href="board.jsp" class="dropdown-item"><i class="fa fa-comments-o mr-2 text-muted"></i> 게시판</a>
 					</li>
 					<li><a href="../../../articles/gallery.jsp" class="dropdown-item"><i class="fa fa-image mr-2 text-muted"></i> 갤러리</a>
 					</li>
